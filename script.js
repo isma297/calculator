@@ -12,12 +12,10 @@ function divide(numbers){
     }
 
 function operate(sign,...numbers){
-    console.log(numbers)
-    return switch(sign){
+    switch(sign){
         case '+': add(numbers);break;
         case '-': subtract(numbers);break;
         case '*': multiply(numbers);break;
         case '/': divide(numbers);break;
     }
 }
-console.log(operate('+',5,5,4,6))
