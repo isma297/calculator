@@ -35,4 +35,6 @@ button{
 #result{
     border-style: solid;
     width: 200px;
+    height: 25px;
+    text-align: right;
 }
