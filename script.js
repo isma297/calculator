@@ -6,12 +6,12 @@ const equal = document.querySelector('.equal');
 equal.addEventListener('click', () => { equals() });
 
 ac.addEventListener('click', () => { allClear() })
-function allClear() { displayValue.textContent = ''; numArr = []; num2 = []; i = 0; numString = '' };
+function allClear() { displayValue.textContent = ''; arrayOfStringNumbers = []; arrayOfNumbers = []; i = 0; numString = '' };
 
 numberButtons.forEach((button) => { button.addEventListener('click', () => { writeNumber(button.id) }); })
 
 operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }); })
-let numArr = [];
+let arrayOfStringNumbers = [];
 let i;
 let numString = '';
 function writeNumber(a) {
@@ -19,27 +19,27 @@ function writeNumber(a) {
   displayValue.textContent += a;
   numString += a;
   i ??= 0;
-  numArr[i] = numString;}
+  arrayOfStringNumbers[i] = numString;}
 }
 function writeOperator(a) {
   if (i == 2) { equals() };
   displayValue.textContent += a;
-  numArr[1] = a;
+  arrayOfStringNumbers[1] = a;
   i = 2;
   numString = '';
 }
-num2 = [];
+arrayOfNumbers = [];
 function equals(a) {
-  console.log(numArr);
-  for (let i = 0; i < numArr.length; i++) {
-    num2[i] = parseInt(numArr[i]);
-    if (isNaN(num2[i])) {
-      num2[i] = numArr[i];
+  console.log(arrayOfStringNumbers);
+  for (let i = 0; i < arrayOfStringNumbers.length; i++) {
+    arrayOfNumbers[i] = parseInt(arrayOfStringNumbers[i]);
+    if (isNaN(arrayOfNumbers[i])) {
+      arrayOfNumbers[i] = arrayOfStringNumbers[i];
     }
   }
-  let result = operate(numArr[1], numArr[0], numArr[2]);
+  let result = operate(arrayOfStringNumbers[1], arrayOfStringNumbers[0], arrayOfStringNumbers[2]);
   console.log(`equals = ${result}`)
-  console.log(num2);
+  console.log(arrayOfNumbers);
   displayValue.textContent += `\n =${result}`;
   allClear();
   writeNumber(result);
