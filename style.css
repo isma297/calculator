@@ -6,29 +6,33 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-.grid-col-span-2 {
-    grid-column: span 2;
+.grid-col-span-4 {
+    grid-column: span 4;
 }
 
 .add {
-    grid-row: 1;
-    grid-column: 4;
-}
-
-.sub{
     grid-row: 2;
     grid-column: 4;
 }
 
-.divi {
+.sub{
     grid-row: 3;
     grid-column: 4;
 }
 
-.mul {
+.divi {
     grid-row: 4;
+    grid-column: 4;
+}
+
+.mul {
+    grid-row: 5;
     grid-column: 4;
 }
 button{
     padding: 10px;
+}
+#result{
+    border-style: solid;
+    width: 200px;
 }
