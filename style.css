@@ -1,40 +1,55 @@
 #grid {
-    width: 200px;
-    height: 300px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  width: 200px;
+  height: 300px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
 }
 
 .grid-col-span-4 {
-    grid-column: span 4;
+  grid-column: span 4;
 }
 
 .add {
-    grid-row: 2;
-    grid-column: 4;
+  grid-row: 2;
+  grid-column: 4;
 }
 
-.sub{
-    grid-row: 3;
-    grid-column: 4;
+.sub {
+  grid-row: 3;
+  grid-column: 4;
 }
 
 .divi {
-    grid-row: 4;
-    grid-column: 4;
+  grid-row: 4;
+  grid-column: 4;
 }
 
 .mul {
-    grid-row: 5;
-    grid-column: 4;
+  grid-row: 5;
+  grid-column: 4;
 }
-button{
-    padding: 10px;
+
+.equal {
+  grid-column: span 2;
 }
-#result{
-    border-style: solid;
-    width: 200px;
-    height: 25px;
-    text-align: right;
+
+button {
+  padding: 17px;
+  border-radius: 8px;
+  font-family: 'Scientific Calculator LCD', sans-serif;
+}
+
+#result {
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 2px;
+  height: 65px;
+  text-align: right;
+  margin-bottom: 0px;
+}
+
+body {
+  font-family: 'Scientific Calculator LCD', sans-serif;
 }
