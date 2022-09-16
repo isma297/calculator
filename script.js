@@ -3,23 +3,27 @@ const displayValue = document.querySelector('#result');
 const operator = document.querySelectorAll('.operator')
 const ac = document.querySelector('#ac');
 const equal = document.querySelector('.equal');
-equal.addEventListener('click', () => { equals() });
-
-ac.addEventListener('click', () => { allClear() })
-function allClear() { displayValue.textContent = ''; arrayOfStringNumbers = []; arrayOfNumbers = []; i = 0; numString = '' };
-
-numberButtons.forEach((button) => { button.addEventListener('click', () => { writeNumber(button.id) }); })
-
-operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }); })
+const float = document.querySelector('.floatingPoint');
 let arrayOfStringNumbers = [];
 let i;
 let numString = '';
+let arrayOfNumbers = [];
+
+float.addEventListener('click',()=>{writeFloatingPoint()})
+equal.addEventListener('click', () => { equals() });
+ac.addEventListener('click', () => { allClear() });
+numberButtons.forEach((button) => { button.addEventListener('click', () => { writeNumber(button.id) }) });
+operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }) });
+function writeFloatingPoint() {
+  if (!numString.includes('.')) { writeNumber('.') }
+}
 function writeNumber(a) {
-  if(numString.length<9){
-  displayValue.textContent += a;
-  numString += a;
-  i ??= 0;
-  arrayOfStringNumbers[i] = numString;}
+  if (numString.length < 9) {
+    displayValue.textContent += a;
+    numString += a;
+    i ??= 0;
+    arrayOfStringNumbers[i] = numString;
+  }
 }
 function writeOperator(a) {
   if (i == 2) { equals() };
@@ -28,25 +32,29 @@ function writeOperator(a) {
   i = 2;
   numString = '';
 }
-arrayOfNumbers = [];
+function allClear() {
+  displayValue.textContent = '';
+  arrayOfStringNumbers = []; arrayOfNumbers = []; i = 0; numString = ''
+};
+
 function equals(a) {
   console.log(arrayOfStringNumbers);
   for (let i = 0; i < arrayOfStringNumbers.length; i++) {
-    arrayOfNumbers[i] = parseInt(arrayOfStringNumbers[i]);
+    arrayOfNumbers[i] = parseFloat(arrayOfStringNumbers[i]);
     if (isNaN(arrayOfNumbers[i])) {
       arrayOfNumbers[i] = arrayOfStringNumbers[i];
     }
   }
-  let result = operate(arrayOfStringNumbers[1], arrayOfStringNumbers[0], arrayOfStringNumbers[2]);
+  let result = operate(arrayOfNumbers[1], arrayOfNumbers[0], arrayOfNumbers[2]);
   console.log(`equals = ${result}`)
   console.log(arrayOfNumbers);
-  displayValue.textContent += `\n =${result}`;
+  displayValue.textContent += `${result}`;
   allClear();
   writeNumber(result);
 }
 
 function add(numbers) {
-  return numbers.reduce((a, b) => { return parseInt(a) + parseInt(b) })
+  return numbers.reduce((a, b) => { return a + b })
 }
 function subtract(numbers) {
   return numbers.reduce((a, b) => { return a - b })
