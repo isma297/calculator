@@ -1,22 +1,33 @@
 const numberButtons = document.querySelectorAll('.number');
-const displayValue = document.querySelector('#result');
+const displayValue = document.querySelector('#display');
 const operator = document.querySelectorAll('.operator')
 const ac = document.querySelector('#ac');
 const equal = document.querySelector('.equal');
 const float = document.querySelector('.floatingPoint');
+const backspace = document.querySelector('#del');
 let arrayOfStringNumbers = [];
 let i;
 let numString = '';
 let arrayOfNumbers = [];
 
-float.addEventListener('click',()=>{writeFloatingPoint()})
+backspace.addEventListener('click', () => { undo() });
+float.addEventListener('click', () => { writeFloatingPoint() })
 equal.addEventListener('click', () => { equals() });
 ac.addEventListener('click', () => { allClear() });
 numberButtons.forEach((button) => { button.addEventListener('click', () => { writeNumber(button.id) }) });
 operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }) });
-function writeFloatingPoint() {
-  if (!numString.includes('.')) { writeNumber('.') }
+
+function undo() {
+  if(!arrayOfStringNumbers[i]){i--}
+  let modifiedString=numString.slice(0,numString.length-1);
+numString=modifiedString;
+displayValue.textContent=modifiedString;
+arrayOfStringNumbers[i] =modifiedString;
+console.log(numString);
+console.log(displayValue.textContent);
+console.log(arrayOfStringNumbers);
 }
+
 function writeNumber(a) {
   if (numString.length < 9) {
     displayValue.textContent += a;
@@ -53,6 +64,9 @@ function equals(a) {
   writeNumber(result);
 }
 
+function writeFloatingPoint() {
+  if (!numString.includes('.')) { writeNumber('.') }
+}
 function add(numbers) {
   return numbers.reduce((a, b) => { return a + b })
 }
