@@ -18,17 +18,20 @@ operator.forEach((button) => { button.addEventListener('click', () => { writeOpe
 
 function undo() {
   if (!arrayOfStringNumbers[i] && i > 0) { i-- }
-  let modifiedString = arrayOfStringNumbers[i].slice(0, numString.length - 1);
+  let modifiedString = arrayOfStringNumbers[i].slice(0, (arrayOfStringNumbers[i].length - 1));
   let currentDisplay = displayValue.textContent;
-  displayValue.textContent = currentDisplay.slice(0, numString.length - 1);
+  displayValue.textContent = currentDisplay.slice(0, (currentDisplay.length - 1));
   arrayOfStringNumbers[i] = modifiedString;
+  console.log(arrayOfStringNumbers);
 }
 
 function writeNumber(a) {
-  if (numString.length < 9) {
+  i ??= 0;
+  arrayOfStringNumbers[i]??='';
+  if ((arrayOfStringNumbers[i].length )< 9) {
     displayValue.textContent += a;
-    i ??= 0;
-    arrayOfStringNumbers[i] ??= '';
+
+    
     arrayOfStringNumbers[i] += a;
   }
 }
@@ -40,7 +43,7 @@ function writeOperator(a) {
 }
 function allClear() {
   displayValue.textContent = '';
-  arrayOfStringNumbers = []; arrayOfNumbers = []; i = 0; numString = ''
+  arrayOfStringNumbers = []; arrayOfNumbers = []; i = 0;
 };
 
 function equals() {
@@ -57,7 +60,7 @@ function equals() {
 }
 
 function writeFloatingPoint() {
-  if (!numString.includes('.')) { writeNumber('.') }
+  if (!arrayOfStringNumbers[i].includes('.')) { writeNumber('.') }
 }
 function add(numbers) {
   return numbers.reduce((a, b) => { return a + b })

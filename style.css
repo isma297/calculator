@@ -1,13 +1,26 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+}
+
 #grid {
   width: 340px;
-  height: 300px;
+  /* height: 300px; */
   text-align: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
+  padding: 10px;
+  background-color: #b4f4e0;
+  border-radius: 10px;
 }
 
-#ac{background-color: #ce9292;}
+#ac {
+  background-color: #ce9292;
+}
+
 .grid-col-span-4 {
   grid-column: span 4;
 }
@@ -48,11 +61,10 @@ button {
   border-width: 2px;
   border-bottom: none;
   border-top: none;
-  /* border-left: none;
-  border-right: none; */
   height: 65px;
   text-align: right;
   margin-bottom: 0px;
+  background-color: aquamarine;
 }
 
 body {
