@@ -18,12 +18,13 @@ numberButtons.forEach((button) => { button.addEventListener('click', () => { wri
 operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }) });
 
 function undo() {
-  if(!arrayOfStringNumbers[i]){i--}
-  let modifiedString=numString.slice(0,numString.length-1);
-numString=modifiedString;
-displayValue.textContent=modifiedString;
+  if(!arrayOfStringNumbers[i]&&i>0){i--}
+  let modifiedString=arrayOfStringNumbers[i].slice(0,numString.length-1);
+// numString=modifiedString;
+let currentDisplay=displayValue.textContent;
+displayValue.textContent=currentDisplay.slice(0,numString.length-1);
 arrayOfStringNumbers[i] =modifiedString;
-console.log(numString);
+// console.log(numString);
 console.log(displayValue.textContent);
 console.log(arrayOfStringNumbers);
 }
@@ -31,9 +32,12 @@ console.log(arrayOfStringNumbers);
 function writeNumber(a) {
   if (numString.length < 9) {
     displayValue.textContent += a;
-    numString += a;
+    console.log(i)
+    // numString += a;
     i ??= 0;
-    arrayOfStringNumbers[i] = numString;
+    // if(i<0){i=0};
+    arrayOfStringNumbers[i] ??='';
+    arrayOfStringNumbers[i] +=a ;
   }
 }
 function writeOperator(a) {
@@ -41,7 +45,7 @@ function writeOperator(a) {
   displayValue.textContent += a;
   arrayOfStringNumbers[1] = a;
   i = 2;
-  numString = '';
+  // numString = '';
 }
 function allClear() {
   displayValue.textContent = '';
