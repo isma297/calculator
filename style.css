@@ -3,18 +3,20 @@ body {
   align-items: center;
   justify-content: center;
   height: 95vh;
+  background-color: #f4b4c8;
 }
 
 #grid {
   width: 340px;
-  /* height: 300px; */
   text-align: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
   padding: 10px;
-  background-color: #b4f4e0;
+  background-color: #93e0c8;
   border-radius: 10px;
+  border-color: white;
+  border-style: solid;
 }
 
 #ac {
@@ -53,6 +55,7 @@ button {
   padding: 17px;
   border-radius: 25px;
   font-family: 'Scientific Calculator LCD', sans-serif;
+  background-color: #eed3d3;
 }
 
 #display {
@@ -64,7 +67,7 @@ button {
   height: 65px;
   text-align: right;
   margin-bottom: 0px;
-  background-color: aquamarine;
+  background-color: rgb(151, 168, 163);
 }
 
 body {

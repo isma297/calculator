@@ -5,6 +5,7 @@ const ac = document.querySelector('#ac');
 const equal = document.querySelector('.equal');
 const float = document.querySelector('.floatingPoint');
 const backspace = document.querySelector('#del');
+let firstTime=true;
 let arrayOfStringNumbers = [];
 let i;
 let arrayOfNumbers = [];
@@ -26,6 +27,7 @@ function undo() {
 }
 
 function writeNumber(a) {
+  if(firstTime===true){allClear();firstTime=false}
   i ??= 0;
   arrayOfStringNumbers[i]??='';
   if ((arrayOfStringNumbers[i].length )< 9) {
@@ -54,11 +56,16 @@ function equals() {
     }
   }
   let result = operate(arrayOfNumbers[1], arrayOfNumbers[0], arrayOfNumbers[2]);
-  displayValue.textContent += `${result}`;
+  if(isNaN(result)||result==undefined){
+    allClear();
+    writeNumber( 'Syntax Error!');
+    firstTime=true;
+  }
+  else{
   allClear();
   writeNumber(result);
+  }
 }
-
 function writeFloatingPoint() {
   if (!arrayOfStringNumbers[i].includes('.')) { writeNumber('.') }
 }
