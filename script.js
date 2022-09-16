@@ -7,7 +7,6 @@ const float = document.querySelector('.floatingPoint');
 const backspace = document.querySelector('#del');
 let arrayOfStringNumbers = [];
 let i;
-let numString = '';
 let arrayOfNumbers = [];
 
 backspace.addEventListener('click', () => { undo() });
@@ -18,26 +17,19 @@ numberButtons.forEach((button) => { button.addEventListener('click', () => { wri
 operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }) });
 
 function undo() {
-  if(!arrayOfStringNumbers[i]&&i>0){i--}
-  let modifiedString=arrayOfStringNumbers[i].slice(0,numString.length-1);
-// numString=modifiedString;
-let currentDisplay=displayValue.textContent;
-displayValue.textContent=currentDisplay.slice(0,numString.length-1);
-arrayOfStringNumbers[i] =modifiedString;
-// console.log(numString);
-console.log(displayValue.textContent);
-console.log(arrayOfStringNumbers);
+  if (!arrayOfStringNumbers[i] && i > 0) { i-- }
+  let modifiedString = arrayOfStringNumbers[i].slice(0, numString.length - 1);
+  let currentDisplay = displayValue.textContent;
+  displayValue.textContent = currentDisplay.slice(0, numString.length - 1);
+  arrayOfStringNumbers[i] = modifiedString;
 }
 
 function writeNumber(a) {
   if (numString.length < 9) {
     displayValue.textContent += a;
-    console.log(i)
-    // numString += a;
     i ??= 0;
-    // if(i<0){i=0};
-    arrayOfStringNumbers[i] ??='';
-    arrayOfStringNumbers[i] +=a ;
+    arrayOfStringNumbers[i] ??= '';
+    arrayOfStringNumbers[i] += a;
   }
 }
 function writeOperator(a) {
@@ -45,15 +37,13 @@ function writeOperator(a) {
   displayValue.textContent += a;
   arrayOfStringNumbers[1] = a;
   i = 2;
-  // numString = '';
 }
 function allClear() {
   displayValue.textContent = '';
   arrayOfStringNumbers = []; arrayOfNumbers = []; i = 0; numString = ''
 };
 
-function equals(a) {
-  console.log(arrayOfStringNumbers);
+function equals() {
   for (let i = 0; i < arrayOfStringNumbers.length; i++) {
     arrayOfNumbers[i] = parseFloat(arrayOfStringNumbers[i]);
     if (isNaN(arrayOfNumbers[i])) {
@@ -61,8 +51,6 @@ function equals(a) {
     }
   }
   let result = operate(arrayOfNumbers[1], arrayOfNumbers[0], arrayOfNumbers[2]);
-  console.log(`equals = ${result}`)
-  console.log(arrayOfNumbers);
   displayValue.textContent += `${result}`;
   allClear();
   writeNumber(result);
