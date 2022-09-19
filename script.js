@@ -1,3 +1,6 @@
+// TODO 
+// Fix bug that gives incorrect solution when modifying floating numbers and then  operating with it.
+
 const numberButtons = document.querySelectorAll('.number');
 const displayValue = document.querySelector('#display');
 const operator = document.querySelectorAll('.operator')
