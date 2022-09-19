@@ -8,6 +8,7 @@ body {
 
 #grid {
   width: 340px;
+  height: 400px;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -56,6 +57,12 @@ button {
   border-radius: 25px;
   font-family: 'Scientific Calculator LCD', sans-serif;
   background-color: #eed3d3;
+}
+button:hover{
+  font-weight:900;
+  border-style:dashed;
+  background-color: #f0c2c2;
+  border-color: rgb(11, 155, 155);
 }
 
 #display {
