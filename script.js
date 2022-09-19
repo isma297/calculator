@@ -5,11 +5,17 @@ const ac = document.querySelector('#ac');
 const equal = document.querySelector('.equal');
 const float = document.querySelector('.floatingPoint');
 const backspace = document.querySelector('#del');
-let firstTime=true;
+let firstTime = true;
 let arrayOfStringNumbers = [];
 let i;
 let arrayOfNumbers = [];
 
+window.addEventListener('keydown', (e) => {
+  if (!isNaN(parseInt(e.key))) { writeNumber(e.key) };
+  if (e.key == '/' || e.key == '*' || e.key == '-' || e.key == '+') { writeOperator(e.key) };
+  if (e.key == '.') { writeFloatingPoint() }
+  if (e.key == 'Enter') { equals() }
+})
 backspace.addEventListener('click', () => { undo() });
 float.addEventListener('click', () => { writeFloatingPoint() })
 equal.addEventListener('click', () => { equals() });
@@ -18,7 +24,7 @@ numberButtons.forEach((button) => { button.addEventListener('click', () => { wri
 operator.forEach((button) => { button.addEventListener('click', () => { writeOperator(button.id) }) });
 
 function undo() {
-  if (!arrayOfStringNumbers[i] && i > 0) { i-- }
+  if (!arrayOfStringNumbers[i] && i > 0) { arrayOfStringNumbers[i] = ''; i-- }
   let modifiedString = arrayOfStringNumbers[i].slice(0, (arrayOfStringNumbers[i].length - 1));
   let currentDisplay = displayValue.textContent;
   displayValue.textContent = currentDisplay.slice(0, (currentDisplay.length - 1));
@@ -27,13 +33,13 @@ function undo() {
 }
 
 function writeNumber(a) {
-  if(firstTime===true){allClear();firstTime=false}
+  if (firstTime === true) { allClear(); firstTime = false }
   i ??= 0;
-  arrayOfStringNumbers[i]??='';
-  if ((arrayOfStringNumbers[i].length )< 9) {
+  arrayOfStringNumbers[i] ??= '';
+  if ((arrayOfStringNumbers[i].length) < 9) {
     displayValue.textContent += a;
 
-    
+
     arrayOfStringNumbers[i] += a;
   }
 }
@@ -55,15 +61,21 @@ function equals() {
       arrayOfNumbers[i] = arrayOfStringNumbers[i];
     }
   }
-  let result = operate(arrayOfNumbers[1], arrayOfNumbers[0], arrayOfNumbers[2]);
-  if(isNaN(result)||result==undefined){
-    allClear();
-    writeNumber( 'Syntax Error!');
-    firstTime=true;
+  let result = (operate(arrayOfNumbers[1], arrayOfNumbers[0], arrayOfNumbers[2]).toString());
+  if (isNaN(result) || result == undefined) {
+    if (result == 'Boom!') {
+      allClear();
+      writeNumber('Boom!');
+      firstTime = true;
+    } else {
+      allClear();
+      writeNumber('Syntax Error!');
+      firstTime = true;
+    }
   }
-  else{
-  allClear();
-  writeNumber(result);
+  else {
+    allClear();
+    writeNumber(result);
   }
 }
 function writeFloatingPoint() {
