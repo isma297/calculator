@@ -32,7 +32,6 @@ function undo() {
   let currentDisplay = displayValue.textContent;
   displayValue.textContent = currentDisplay.slice(0, (currentDisplay.length - 1));
   arrayOfStringNumbers[i] = modifiedString;
-  console.log(arrayOfStringNumbers);
 }
 
 function writeNumber(a) {
